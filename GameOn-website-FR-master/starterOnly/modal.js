@@ -1,3 +1,4 @@
+// Fonction pour modifier la navigation (responsive)
 function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
@@ -7,7 +8,7 @@ function editNav() {
   }
 }
 
-// DOM Elements
+// Sélection des éléments du DOM
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
@@ -26,7 +27,7 @@ const form = document.querySelector("#form");
 const validMessage = document.querySelector("#valide");
 const btnFermer = document.querySelector(".close_btn");
 
-// erreurs
+// Messages d'erreurs
 const errorFirstName = document.querySelector("#first_error");
 const errorLastName = document.querySelector("#last_error");
 const errorEmail = document.querySelector("#email_error");
@@ -40,8 +41,8 @@ const errorTerms = document.querySelector("#checkbox_error");
 
 
 
-//validation prénom
 
+// Fonction de validation du prénom (doit avoir au moins 2 caractères et ne doit pas contenir de caractères spéciaux, ça envoie true ou false)
 function firstNameChecker() {
 
   if ((firstName.value.length < 2) || (firstName.value === '')
@@ -64,8 +65,8 @@ function firstNameChecker() {
   }
 }
 
-//validation nom
 
+// Fonction de validation du nom (doit avoir au moins 2 caractères et ne doit pas contenir de caractères spéciaux, ça envoie true ou false)
 function lastNameChecker() {
 
   if ((lastName.value.length < 2) || (lastName.value === '')
@@ -88,7 +89,7 @@ function lastNameChecker() {
   }
 }
 
-//validation email
+// Fonction de validation de l'e-mail (doit avoir au moins 2 caractères et doit être au format valide) 
 
 function emailChecker() {
   if ((email.value.length < 2)
@@ -119,7 +120,7 @@ function emailChecker() {
   }
 }
 
-//validation de la date de naissance
+// Fonction de validation de la date de naissance (doit être renseignée)
 
 function birthdateChecker() {
 
@@ -135,7 +136,7 @@ function birthdateChecker() {
   }
 }
 
-//validation de quantité de tournois 
+// Fonction de validation de la quantité de tournois (doit être renseignée et comprise entre 0 et 99)
 
 function quantityChecker() {
 
@@ -163,7 +164,7 @@ function quantityChecker() {
 
 
 
-// validation de la ville
+// Fonction de validation de la ville (au moins une option doit être choisie)
 
 function cityChecker() {
   let isChecked = false;
@@ -189,7 +190,7 @@ function cityChecker() {
 
 
 
-//validation de charte d'utilisation
+// Fonction de validation de la charte d'utilisation (doit être acceptée)
 
 function termsChecker() {
   if (terms.checked == false) {
@@ -202,7 +203,7 @@ function termsChecker() {
   }
 };
 
-//gestionnairede soumission de formulaire
+//Gestionnaire de soumission de formulaire
 form.addEventListener("submit", function (event) {
   event.preventDefault();
 
@@ -217,7 +218,7 @@ form.addEventListener("submit", function (event) {
     termsChecker()
 
   ) {
-
+    form.reset();
     validMessage.style.display = "block";
   }
 
@@ -225,10 +226,13 @@ form.addEventListener("submit", function (event) {
 // Gestionnaire de fermeture du modal
 btnFermer.addEventListener("click", closeModalValide);
 
+
 function closeModalValide() {
   modalbg.style.display = "none";
   valide.style.display = "none";
 }
+close.addEventListener("click", closeModalValide);
+
 
 // Gestionnaire de lancement du modal
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));

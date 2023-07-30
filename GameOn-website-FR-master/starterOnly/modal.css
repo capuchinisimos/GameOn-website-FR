@@ -576,6 +576,20 @@ footer {
 }
 
 @media screen and (max-width: 800px) {
+  a.icon {
+    margin: 15px;
+    padding: 10px;
+  }
+
+  img {
+    padding: 1rem;
+    width: 80%;
+  }
+
+  .main-navbar {
+    width: 75%;
+  }
+
   .hero-section {
     display: block;
     box-shadow: unset;
