@@ -17,7 +17,7 @@ const lastName = document.querySelector("#last");
 const email = document.querySelector("#email");
 const birthdate = document.querySelector("#birthdate");
 const quantity = document.querySelector("#quantity");
-const city = document.querySelector("#location");
+const cityRadios = document.getElementsByName('location');
 const terms = document.querySelector("#checkbox1");
 const regexNames = /^[a-zA-ZÀ-ÖØ-öø-ÿ]+$/;
 const regexMail = /^[^@\s]+@[^@\.\s]+(\.[^@\.\s]+)+$/;
@@ -35,22 +35,8 @@ const errorQuantity = document.querySelector("#quantity_error");
 const errorCity = document.querySelector("#city_error");
 const errorTerms = document.querySelector("#checkbox_error");
 
-// launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
-// launch modal form
-function launchModal() {
-  modalbg.style.display = "block";
-}
 
-// close modal 
-
-btnFermer.addEventListener("click", closeModalValide);
-function closeModalValide() {
-  modalbg.style.display = "none";
-  /* Modal formValide */
-  valide.style.display = "none";
-}
 
 
 
@@ -133,7 +119,7 @@ function emailChecker() {
   }
 }
 
-//validation date de naissance
+//validation de la date de naissance
 
 function birthdateChecker() {
 
@@ -149,10 +135,9 @@ function birthdateChecker() {
   }
 }
 
-//validation quantité de tournois 
+//validation de quantité de tournois 
 
 function quantityChecker() {
-
 
 
   if ((quantity.value.length == 0)) {
@@ -178,11 +163,11 @@ function quantityChecker() {
 
 
 
-// validation ville
+// validation de la ville
 
 function cityChecker() {
   let isChecked = false;
-  const cityRadios = document.getElementsByName('location');
+
   for (let cityRadio of cityRadios) {
     if (cityRadio.checked) {
       isChecked = true;
@@ -217,7 +202,7 @@ function termsChecker() {
   }
 };
 
-//envoie de formulaire
+//gestionnairede soumission de formulaire
 form.addEventListener("submit", function (event) {
   event.preventDefault();
 
@@ -228,10 +213,26 @@ form.addEventListener("submit", function (event) {
     emailChecker() &&
     birthdateChecker() &&
     quantityChecker() &&
-    cityChecker()
+    cityChecker() &&
+    termsChecker()
 
   ) {
 
     validMessage.style.display = "block";
   }
+
 });
+// Gestionnaire de fermeture du modal
+btnFermer.addEventListener("click", closeModalValide);
+
+function closeModalValide() {
+  modalbg.style.display = "none";
+  valide.style.display = "none";
+}
+
+// Gestionnaire de lancement du modal
+modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+
+function launchModal() {
+  modalbg.style.display = "block";
+}
